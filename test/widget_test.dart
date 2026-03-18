@@ -1,13 +1,22 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flutter_hello_world/main.dart';
+import 'package:flutter_hello_world/model/car_model.dart';
 
 void main() {
-  testWidgets('Hello World screen displays correctly', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+  group('Car model', () {
+    test('creates a car from json', () {
+      final car = Car.fromJson({
+        'id': 9582,
+        'year': 2008,
+        'make': 'Audi',
+        'model': 'A5',
+        'type': 'Sedan',
+      });
 
-    expect(find.text('Hello World!'), findsOneWidget);
-    expect(find.text('Hello World'), findsOneWidget);
+      expect(car.id, 9582);
+      expect(car.year, 2008);
+      expect(car.make, 'Audi');
+      expect(car.model, 'A5');
+      expect(car.type, 'Sedan');
+    });
   });
 }
